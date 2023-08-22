@@ -1,5 +1,5 @@
 <div class="customer-form">
-  <h2>Customer Information Form</h2>
+  <h2>Customer Information</h2>
   <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="fullName">Full Name:</label>
@@ -18,9 +18,10 @@
     </div>
     <div class="form-group">
       <label for="faceImage">Face Image:</label>
-      <input type="file" id="faceImage"accept="image/*" capture="camera" (change)="onImageChange($event)" required>
+      <input type="file" id="faceImage" accept="image/*" capture="camera" formControlName="faceImage" required>
+      <!-- <input type="file" id="faceImage"accept="image/*" capture="camera" (change)="onImageChange($event)" required> -->
     </div>
     <button type="submit" [disabled]="!customerForm.valid">Submit</button>
+    {{customerForm.value|json}}
   </form>
-  {{customerForm.value|json}}
 </div>

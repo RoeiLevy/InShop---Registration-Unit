@@ -26,15 +26,15 @@ export class ModelDrivenComponent {
     }
   }
 
-  onImageChange(event: Event) {
-    const inputElement = event.target as HTMLInputElement;
-    const file = inputElement.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        this.customerForm.patchValue({ faceImage: e.target?.result || '' });
-      };
-      reader.readAsDataURL(file);
-    }
-  }
+  // onImageChange(event: Event) {
+  //   const inputElement = event.target as HTMLInputElement;
+  //   const file = inputElement.files?.[0];
+  //   if (file) {
+  //     const reader = new FileReader();
+  //     reader.onload = (e) => {
+  //       this.customerForm.patchValue({ faceImage: e.target?.result || '' });
+  //     };
+  //     reader.readAsDataURL(file);
+  //   }
+  // }
 }
