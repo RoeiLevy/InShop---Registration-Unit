@@ -12,6 +12,17 @@
 </style>
 
 <div class="content" role="main">
-  <h1>Welcome to {{title}}!</h1>
-  <h2>Start editing to see some magic happen</h2>
+  <h1>InShop - Registration Unit</h1>
+  <button (click)="setIsTemplateDriven(true)">Template Driven Form</button>
+  <button (click)="setIsTemplateDriven(false)">Model Driven Form</button>
+    <div class="form" *ngIf="isTemplateDriven; else elseBlock;">
+      <template-driven></template-driven>
+    </div>
+    <ng-template #elseBlock>
+      <div class="form">
+        <model-driven></model-driven>
+      </div>
+    </ng-template>
+  
+  
 </div>

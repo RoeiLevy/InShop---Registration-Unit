@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'CodeSandbox';
+  isTemplateDriven: Boolean = false;
+
+  setIsTemplateDriven(isTemplateDriven: Boolean) {
+    this.isTemplateDriven = isTemplateDriven;
+  }
 }
