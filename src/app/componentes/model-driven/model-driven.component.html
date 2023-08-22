@@ -73,7 +73,7 @@
 
     </div>
 
-    <button mat-raised-button color="primary" type="submit" [disabled]="!customerForm.valid && !isLoadingImage">Submit</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!customerForm.valid || isLoadingImage">Submit</button>
   </form>
   {{customerForm.value|json}}
 </div>

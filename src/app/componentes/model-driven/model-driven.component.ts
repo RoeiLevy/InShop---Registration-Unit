@@ -50,8 +50,6 @@ export class ModelDrivenComponent {
       const reader = new FileReader();
       reader.onload = (e) => {
         this.customerForm.patchValue({ faceImage: e.target?.result || '' });
-        console.log(this.customerForm.value.faceImage);
-
         const finishLoadingTime = Date.now();
         if (finishLoadingTime - startLoadingTime < 3000) {
           setTimeout(() => {
