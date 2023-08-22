@@ -1,4 +1,4 @@
-<div class="customer-form">
+<!-- <div class="customer-form">
   <h2>Customer Information</h2>
   <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
@@ -18,10 +18,77 @@
     </div>
     <div class="form-group">
       <label for="faceImage">Face Image:</label>
-      <!-- <input type="file" id="faceImage" accept="image/*" capture="camera" formControlName="faceImage" required> -->
+      <input type="file" id="faceImage" accept="image/*" capture="camera" formControlName="faceImage" required>
       <input type="file" id="faceImage"accept="image/*" capture="camera" (change)="onImageChange($event)" required>
     </div>
     <button type="submit" [disabled]="!customerForm.valid">Submit</button>
     {{customerForm.value|json}}
+  </form>
+</div> -->
+<div class="customer-form">
+  <h2>Customer Information Form</h2>
+  <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label>Full Name</mat-label>
+      <input matInput formControlName="fullName">
+      <mat-error *ngIf="customerForm.get('fullName')?.hasError('required')">Full name is required</mat-error>
+      <mat-error *ngIf="customerForm.get('fullName')?.hasError('pattern')">Invalid characters</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Preferred Language</mat-label>
+      <mat-select formControlName="preferredLanguage">
+        <mat-option *ngFor="let language of languages" [value]="language">{{ language }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="customerForm.get('preferredLanguage')?.hasError('required')">Preferred language is
+        required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Phone Number</mat-label>
+      <input matInput formControlName="phoneNumber">
+      <mat-error *ngIf="customerForm.get('phoneNumber')?.hasError('required')">Phone number is required</mat-error>
+      <mat-error *ngIf="customerForm.get('phoneNumber')?.hasError('pattern')">Invalid phone number</mat-error>
+    </mat-form-field>
+
+    <div class="input-file-container">
+      <div class="camera" (click)="nativeInputClick()">
+        <mat-icon class="icon">camera_enhance</mat-icon>
+        <h4 class="title">Take a selfie</h4>
+        <h5 class="required-text">(required)</h5>
+        <div *ngIf="isLoadingImage" class="loader">
+          <mat-spinner [diameter]="50"></mat-spinner>
+        </div>
+      </div>
+      <div *ngIf="customerForm.value.faceImage && !isLoadingImage && !fileInputError" class="result">
+        <p>Image uploaded successfully</p>
+        <mat-icon>done</mat-icon>
+      </div>
+      <div *ngIf="fileInputError" class="error">
+        {{fileInputError}}
+      </div>
+      <!-- <input #fileInputRef hidden type="file" id="faceImage" accept="image/*" capture="camera" formControlName="faceImage" required> -->
+      <input #fileInputRef hidden type="file" id="faceImage" accept="image/*" capture="camera"
+        (change)="onImageChange($event)" (error)="onFileError()" required>
+
+    </div>
+
+
+    <!-- <mat-form-field appearance="fill">
+      <mat-label>Face Image</mat-label>
+      <input type="file" (change)="onImageChange($event)" accept="image/*" matInput required>
+      <mat-error *ngIf="customerForm.get('faceImage')?.hasError('required')">Face image is required</mat-error>
+    </mat-form-field> -->
+
+    <!-- <mat-form-field appearance="fill">
+      <mat-label>Face Image</mat-label>
+      <div class="custom-file-input">
+        <input type="file" (change)="onImageChange($event)" accept="image/*" required>
+        <span>Choose File</span>
+      </div>
+      <mat-error *ngIf="customerForm.get('faceImage')?.hasError('required')">Face image is required</mat-error>
+    </mat-form-field> -->
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="!customerForm.valid">Submit</button>
   </form>
 </div>

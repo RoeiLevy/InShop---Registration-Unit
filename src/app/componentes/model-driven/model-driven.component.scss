@@ -20,26 +20,44 @@
     flex-direction: column;
     gap: 10px;
 
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-
-      input[type="text"],
-      select,
-      input[type="file"] {
-        padding: 8px;
+    .input-file-container {
+      .camera {
         border: 1px solid #ccc;
-        border-radius: 3px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        width: fit-content;
+        padding: 10px;
+        margin: 0 auto;
+        position: relative;
+        cursor: pointer;
+        .icon {
+        }
+        .title {
+          margin: 5px;
+        }
+        .required-text{
+          margin: 5px;
+        }
+        .loader{
+          position: absolute;
+          top: 0;
+          left: 0;
+          transform: translateX(-125%);
+          height: 100%;
+          display: flex;
+          align-items: center;
+        }
       }
-    }
-    button {
-      padding: 10px 20px;
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      border-radius: 3px;
-      cursor: pointer;
+      .result{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 20px;
+        p{
+          margin: 0;
+        }
+      }
     }
   }
 }
