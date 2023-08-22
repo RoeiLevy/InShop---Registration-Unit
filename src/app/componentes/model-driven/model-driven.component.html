@@ -73,22 +73,7 @@
 
     </div>
 
-
-    <!-- <mat-form-field appearance="fill">
-      <mat-label>Face Image</mat-label>
-      <input type="file" (change)="onImageChange($event)" accept="image/*" matInput required>
-      <mat-error *ngIf="customerForm.get('faceImage')?.hasError('required')">Face image is required</mat-error>
-    </mat-form-field> -->
-
-    <!-- <mat-form-field appearance="fill">
-      <mat-label>Face Image</mat-label>
-      <div class="custom-file-input">
-        <input type="file" (change)="onImageChange($event)" accept="image/*" required>
-        <span>Choose File</span>
-      </div>
-      <mat-error *ngIf="customerForm.get('faceImage')?.hasError('required')">Face image is required</mat-error>
-    </mat-form-field> -->
-
-    <button mat-raised-button color="primary" type="submit" [disabled]="!customerForm.valid">Submit</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!customerForm.valid && !isLoadingImage">Submit</button>
   </form>
+  {{customerForm.value|json}}
 </div>
