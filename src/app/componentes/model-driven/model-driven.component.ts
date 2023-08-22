@@ -8,7 +8,7 @@ import { Customer } from 'src/app/interfaces/customer';
 })
 export class ModelDrivenComponent {
   customerForm: FormGroup;
-  languages = ['English', 'Spanish', 'French']; // Example preferred languages
+  languages = ['English', 'Spanish', 'French'];
 
   constructor(private formBuilder: FormBuilder) {
     this.customerForm = this.formBuilder.group({
@@ -23,22 +23,16 @@ export class ModelDrivenComponent {
     if (this.customerForm.valid) {
       const customerData: Customer = this.customerForm.value;
       console.log('Submitted Customer Data:', customerData);
-      // You can perform further actions with the customer data
     }
   }
 
   onImageChange(event: Event) {
-    // const inputElement = event.target as HTMLInputElement;
-    // const file = inputElement.files?.[0] || null;
-    // this.customerForm.patchValue({ faceImage: file });
     const inputElement = event.target as HTMLInputElement;
     const file = inputElement.files?.[0];
-
     if (file) {
       const reader = new FileReader();
       reader.onload = (e) => {
         this.customerForm.patchValue({ faceImage: e.target?.result || '' });
-        // this.capturedPhoto = e.target?.result || '';
       };
       reader.readAsDataURL(file);
     }

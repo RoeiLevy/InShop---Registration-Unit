@@ -6,10 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'CodeSandbox';
-  isTemplateDriven: Boolean = false;
+  // title = 'CodeSandbox';
+  // isTemplateDriven: Boolean = false;
 
-  setIsTemplateDriven(isTemplateDriven: Boolean) {
-    this.isTemplateDriven = isTemplateDriven;
-  }
+  // setIsTemplateDriven(isTemplateDriven: Boolean) {
+  //   this.isTemplateDriven = isTemplateDriven;
+  // }
 }
