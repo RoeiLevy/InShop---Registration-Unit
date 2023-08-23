@@ -1,30 +1,3 @@
-<!-- <div class="customer-form">
-  <h2>Customer Information</h2>
-  <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="fullName">Full Name:</label>
-      <input type="text" id="fullName" formControlName="fullName" required>
-    </div>
-    <div class="form-group">
-      <label for="preferredLanguage">Preferred Language:</label>
-      <select id="preferredLanguage" formControlName="preferredLanguage" required>
-        <option value="" disabled>Select...</option>
-        <option *ngFor="let language of languages" [value]="language">{{ language }}</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="phoneNumber">Phone Number:</label>
-      <input type="text" id="phoneNumber" formControlName="phoneNumber" required>
-    </div>
-    <div class="form-group">
-      <label for="faceImage">Face Image:</label>
-      <input type="file" id="faceImage" accept="image/*" capture="camera" formControlName="faceImage" required>
-      <input type="file" id="faceImage"accept="image/*" capture="camera" (change)="onImageChange($event)" required>
-    </div>
-    <button type="submit" [disabled]="!customerForm.valid">Submit</button>
-    {{customerForm.value|json}}
-  </form>
-</div> -->
 <div class="customer-form">
   <h2>Customer Information Form</h2>
   <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
@@ -67,13 +40,13 @@
       <div *ngIf="fileInputError" class="error">
         {{fileInputError}}
       </div>
-      <!-- <input #fileInputRef hidden type="file" id="faceImage" accept="image/*" capture="camera" formControlName="faceImage" required> -->
+      <!-- <input #fileInputRef hidden type="file" id="faceImage" accept="image/*" capture="camera"
+        formControlName="faceImage" (error)="onFileError()" required> -->
       <input #fileInputRef hidden type="file" id="faceImage" accept="image/*" capture="camera"
         (change)="onImageChange($event)" (error)="onFileError()" required>
-
     </div>
 
-    <button mat-raised-button color="primary" type="submit" [disabled]="!customerForm.valid || isLoadingImage">Submit</button>
+    <button mat-raised-button color="primary" type="submit"
+      [disabled]="!customerForm.valid || isLoadingImage">Submit</button>
   </form>
-  {{customerForm.value|json}}
 </div>

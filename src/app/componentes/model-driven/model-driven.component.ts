@@ -1,14 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Customer } from 'src/app/interfaces/customer';
-
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
 
 @Component({
   selector: 'model-driven',
@@ -17,22 +9,19 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 
 export class ModelDrivenComponent {
-  customerForm: FormGroup;
+
+  constructor(private formBuilder: FormBuilder) { }
+
+  customerForm: FormGroup = this.formBuilder.group({
+    fullName: ['', [Validators.required, Validators.pattern(/^[A-Za-z\s]+$/)]],
+    preferredLanguage: ['', [Validators.required]],
+    phoneNumber: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
+    faceImage: [null, [Validators.required]]
+  });
   languages = ['English', 'Spanish', 'French'];
-  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
-  matcher = new MyErrorStateMatcher();
-  @ViewChild('fileInputRef', { static: false }) fileInputRef!: ElementRef<HTMLInputElement>;
   isLoadingImage: Boolean = false;
   fileInputError: string | null = null;
-
-  constructor(private formBuilder: FormBuilder) {
-    this.customerForm = this.formBuilder.group({
-      fullName: ['', [Validators.required, Validators.pattern(/^[A-Za-z\s]+$/)]],
-      preferredLanguage: ['', [Validators.required]],
-      phoneNumber: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
-      faceImage: [null, [Validators.required]]
-    });
-  }
+  @ViewChild('fileInputRef') fileInputRef!: ElementRef<HTMLInputElement>;
 
   onSubmit() {
     if (this.customerForm.valid) {
